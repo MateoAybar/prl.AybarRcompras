@@ -32,7 +32,7 @@
             lblFecha = new Label();
             lblProducto = new Label();
             lblPrecio = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtmFecha = new DateTimePicker();
             grpDatos = new GroupBox();
             lblCantidad = new Label();
             mskPrecio = new MaskedTextBox();
@@ -45,12 +45,13 @@
             // 
             // btnCargar
             // 
-            btnCargar.Location = new Point(295, 246);
+            btnCargar.Location = new Point(22, 230);
             btnCargar.Name = "btnCargar";
             btnCargar.Size = new Size(65, 30);
             btnCargar.TabIndex = 0;
             btnCargar.Text = "Cargar";
             btnCargar.UseVisualStyleBackColor = true;
+            btnCargar.Click += btnCargar_Click;
             // 
             // lblFecha
             // 
@@ -83,14 +84,15 @@
             lblPrecio.TabIndex = 5;
             lblPrecio.Text = "Precio Unitario";
             // 
-            // dateTimePicker1
+            // dtmFecha
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 10F);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(60, 38);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(95, 25);
-            dateTimePicker1.TabIndex = 6;
+            dtmFecha.Font = new Font("Segoe UI", 10F);
+            dtmFecha.Format = DateTimePickerFormat.Short;
+            dtmFecha.Location = new Point(60, 38);
+            dtmFecha.Name = "dtmFecha";
+            dtmFecha.Size = new Size(95, 25);
+            dtmFecha.TabIndex = 6;
+            dtmFecha.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // grpDatos
             // 
@@ -99,7 +101,7 @@
             grpDatos.Controls.Add(mskPrecio);
             grpDatos.Controls.Add(nudCantidad);
             grpDatos.Controls.Add(lstProducto);
-            grpDatos.Controls.Add(dateTimePicker1);
+            grpDatos.Controls.Add(dtmFecha);
             grpDatos.Controls.Add(lblPrecio);
             grpDatos.Controls.Add(lblProducto);
             grpDatos.Controls.Add(lblFecha);
@@ -128,10 +130,10 @@
             mskPrecio.Name = "mskPrecio";
             mskPrecio.Size = new Size(68, 25);
             mskPrecio.TabIndex = 11;
-            mskPrecio.MaskInputRejected += this.mskPrecio_MaskInputRejected;
             // 
             // nudCantidad
             // 
+            nudCantidad.Enabled = false;
             nudCantidad.Font = new Font("Segoe UI", 10F);
             nudCantidad.Location = new Point(87, 119);
             nudCantidad.Name = "nudCantidad";
@@ -146,12 +148,13 @@
             lstProducto.Items.AddRange(new object[] { "Pizza", "Hamburguesa", "Pastas", "MENU " });
             lstProducto.Location = new Point(87, 80);
             lstProducto.Name = "lstProducto";
-            lstProducto.Size = new Size(215, 17);
+            lstProducto.Size = new Size(215, 21);
             lstProducto.TabIndex = 9;
+            lstProducto.SelectedIndexChanged += lstProducto_SelectedIndexChanged;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(366, 246);
+            btnCancelar.Location = new Point(93, 230);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(65, 30);
             btnCancelar.TabIndex = 10;
@@ -162,7 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(443, 285);
+            ClientSize = new Size(443, 344);
             Controls.Add(btnCancelar);
             Controls.Add(grpDatos);
             Controls.Add(btnCargar);
@@ -180,7 +183,7 @@
         private Label lblFecha;
         private Label lblProducto;
         private Label lblPrecio;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtmFecha;
         private GroupBox grpDatos;
         private Label lblCantidad;
         private MaskedTextBox mskPrecio;
